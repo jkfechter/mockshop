@@ -8,7 +8,7 @@ class CategoriesList extends React.Component {
   }
 
   render() {
-    const { error, loading, products } = this.props;
+    const { error, loading, items } = this.props;
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -20,7 +20,7 @@ class CategoriesList extends React.Component {
 
     return (
       <ul>
-        {products.map(product =>
+        {items.map(product =>
           <li key={product.id}>{product.title}</li>
         )}
       </ul>
