@@ -5,7 +5,7 @@ import {
   } from '../actions/productsActions';
   
   const initialState = {
-    items: [],
+    products: [],
     loading: false,
     error: null
   };
@@ -15,6 +15,7 @@ import {
       case GET_PRODUCTS:
         // Mark the state as "loading" so we can show a spinner or something
         // Also, reset any errors. We're starting fresh.
+        console.log('test')
         return {
           ...state,
           loading: true,
@@ -24,10 +25,11 @@ import {
       case POPULATE_PRODUCTS:
         // All done: set loading "false".
         // Also, replace the items with the ones from the server
+        console.log('action', action);
         return {
           ...state,
           loading: false,
-          items: action.payload.products
+          products: action.payload.products
         };
   
       case FETCH_PRODUCTS_FAILURE:
@@ -42,7 +44,7 @@ import {
           ...state,
           loading: false,
           error: action.payload.error,
-          items: []
+          products: []
         };
   
       default:

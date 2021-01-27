@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getProducts } from "../actions/productsActions";
+import { fetchProducts } from "../actions/productsActions";
 
 class CategoriesList extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getProducts());
+    this.props.dispatch(fetchProducts());
   }
 
   render() {
-    const { error, loading, items } = this.props;
+    const { error, loading, products } = this.props;
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -17,10 +17,10 @@ class CategoriesList extends React.Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-
+console.log('products', products);
     return (
       <ul>
-        {items.map(product =>
+        {products.map(product =>
           <li key={product.id}>{product.title}</li>
         )}
       </ul>
@@ -29,7 +29,7 @@ class CategoriesList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products.title,
+  products: state.products.products,
   loading: state.products.loading,
   error: state.products.error
 });
